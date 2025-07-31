@@ -66,10 +66,7 @@ io.on("connection", (socket) => {
     const { sessionId, cmd, type, victimId, role, params, data } = payload;
     const adminSocketId = admins[sessionId];
     if (adminSocketId) {
-      io.to(adminSocketId).emit("response", {
-        victimId,
-        payload,
-      });
+      io.to(adminSocketId).emit("response", payload);
     } else {
       console.warn(`⚠️ Admin not found for session ${sessionId}`);
     }
